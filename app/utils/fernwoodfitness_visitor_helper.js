@@ -10,7 +10,7 @@ var config = {
 
 var casper = require('casper').create({
     verbose: true,
-    logLevel: "info"
+    logLevel: "debug"
 });
 
 casper.start(config.url, function() {
