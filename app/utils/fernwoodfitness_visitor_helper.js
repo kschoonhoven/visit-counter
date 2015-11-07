@@ -8,7 +8,10 @@ var config = {
     password: 'Asdf1234'
 };
 
-var casper = require('casper').create();
+var casper = require('casper').create({
+    verbose: true,
+    logLevel: "debug"
+});
 
 casper.start(config.url, function() {
     // fill login form with username and password
