@@ -38,6 +38,7 @@ gem 'slimerjs-gem'
 gem 'casperjs', '~> 1.0'
 gem 'multi_json', '~> 1.7.2'
 gem 'friendly_ghost'
+gem 'bundler'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
