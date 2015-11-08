@@ -8,10 +8,7 @@ var config = {
     password: 'Asdf1234'
 };
 
-var casper = require('casper').create({
-    verbose: true,
-    logLevel: "debug"
-});
+var casper = require('casper').create();
 
 casper.start(config.url, function() {
     // fill login form with username and password
@@ -31,6 +28,15 @@ casper.then(function() {
     this.click('div[id="menuItemText10"] a');
 });
 
+function testAlert(message) {
+    this.echo(message);
+}
+
+casper.then(function() {
+    // temporarily registering listener
+    this.on('remote.alert', testAlert);
+});
+
 casper.then(function() {
     // input member id
     casper.echo("Member ID: " + casper.cli.args[0]);
@@ -44,11 +50,15 @@ casper.then(function() {
     this.click('input[id="btnUpdate"]');
 });
 
+casper.then(function() {
+    this.removeListener('remote.alert', testAlert);
+});
+/*
 casper.waitForAlert(function(response) {
     // log the alert message which appears after visit.
     casper.log(response.data);
 });
-
+*/
 casper.run(function() {
     this.exit();
 });
